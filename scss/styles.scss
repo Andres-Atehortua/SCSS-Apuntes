@@ -3,6 +3,8 @@
 @import "./ciclos";
 @import "./mixing";
 @import "./funciones";
+@import "./colores";
+@import "./debuggin";
 // @extend sirve para utilizar un placeholder u otra clase como estilos.
 // El signo de % significa que es un placeholder, es decir son bloques de estilos que se guardan para
 // reutilizarlos.
@@ -153,4 +155,8 @@ body {
 
 section {
   box-shadow: long-shadow(50, white);
+}
+
+.color-texto {
+  color: color-text();
 }

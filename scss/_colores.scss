@@ -1,0 +1,58 @@
+// Color substractivo(pinturas, imprenta) cuanto más color se añada más oscuro se hace.
+// Conformado por cyan, magenta, amarillo y negro (CMYK)
+
+// Color aditivo(luz, pantalla)
+// Conformado por red, green, blue (RGB)
+// cada color tiene 255 variaciones. Que es lo mismo que 2 elevado a 8 que es igual a  16M de colores = Profundidad de  24bits
+
+// Notacion hexadecimal, ##RRGGBB (RR = RED, GG= GREEN, BB= BLUE)
+// Va del 0 al 16 de la siguiente forma -> 0123456789ABCDEF
+
+// hue, saturation, lighten (HSL)
+// hue = tono de color de 0 a 360 grados.
+//saturation = intensidad del color de gris al color puro.
+// lighten = cantidad de luz. 0% es negro y 100% da blanco, color puro en 50%
+// 0/360 ->red
+// 60 ->yellow
+// 120 ->green
+// 180 ->cyan
+// 240 ->blue
+// 300 ->magenta
+
+body {
+  background: rgb(200, 255, 50);
+}
+
+body {
+  //En SCSS se puede omitir el % ya que al compilarlo lo añadirá al css
+  background: hsl(200, 100, 50);
+}
+
+//FUNCIONES DE COLORES
+/*RGB
+red($color)
+green($color) -> se les da un color como argumento y te retorna la un numero.
+blue($color)
+
+HSL
+hue($color)
+saturation($color)
+lighten($color)
+
+darken($color, cantidad) -> para oscurecer
+lighten($color, cantidad) -> para dar brillo
+saturate($color, cantidad) -> para aumentar saturacion
+desaturate($color, cantidar) -> para quitar saturacion
+adjust-hue($color,cantidad) -> ajustar cantidad de hue
+*/
+$base-color: rgb(182, 182, 212);
+$text-color-dark: black;
+$text-color-light: white;
+
+@function color-text() {
+  @if lightness($base-color) > 50 {
+    @return $text-color-dark;
+  } @else {
+    @return $text-color-light;
+  }
+}

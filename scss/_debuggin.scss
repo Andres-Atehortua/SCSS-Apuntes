@@ -1,0 +1,42 @@
+//OPCIONES DE COMPILACION
+//La version corta de --watch es -w y la version corta de --output es -o
+//Diferentes forma de compilar cambiando los comandos
+//node-sass scss -o css --output-style=<expanded, compressed, nested, compact>
+//--source-comments te añade comentarios sobre qué linea de sass te ha generado el style
+
+//SOURCEMAPS - Mapas de origen -> Son codigo que vinculan el resultado compilado con el codigo que le dio origen
+// Para habilitarlo ejecutamos el siguiente comando:
+//node-sass scss -o css --source-map=true-false
+
+/*
+DEBUGGIN CON
+@debug 
+@warn
+@error
+
+Con las tres mandamos mensajes a la consola.
+Cambia que debug manda un mensaje normal, warn una alerta y error un error que detiene la compilacion
+
+*/
+
+$size: 1em;
+
+@debug $size;
+
+//ESTRUCTURA DE PROYECTO
+
+/*
+SMACSS
+base(etiquetas html)
+modulos(componentes reutilizables) (botones, cards, etc...)
+layout(posicionamiento)
+theme(tipografía, color, identidad visual de la empresa)
+estado(elementos que cambian) (animaciones, hover, hidden...)
+
+ITCSS
+
+7 in 1
+
+
+
+*/
