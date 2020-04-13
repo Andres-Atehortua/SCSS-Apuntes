@@ -4,11 +4,11 @@ Todos mis apuntes acerca del preprocesador SASS
 
 ## Instalación
 
-npm install
+- Ejecutar npm install en la terminal.
 
 ## Ejecución
 
-Ejecutar los archivos en el navegador.
+- Ejecutar los archivos en el navegador.
 
 ## Recursos externos
 
