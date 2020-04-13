@@ -1,0 +1,23 @@
+// Declaración de variables
+$color: blue;
+$size: 16px;
+
+$button-colors: (
+  primary: blue,
+  secondary: grey,
+  caution: red,
+  //cta significa llamado a la accion
+    cta: orange,
+);
+
+$breakpoints: (
+  small: 320px,
+  medium: 640px,
+  large: 1024px,
+  xlarge: 1400px,
+);
+
+$path: "/img/";
+
+$border1: 1px solid black;
+$border2: 2px dotted blue;

@@ -1,0 +1,156 @@
+// Importación de otro archivo scss
+@import "./components/config";
+@import "./ciclos";
+@import "./mixing";
+@import "./funciones";
+// @extend sirve para utilizar un placeholder u otra clase como estilos.
+// El signo de % significa que es un placeholder, es decir son bloques de estilos que se guardan para
+// reutilizarlos.
+%button {
+  display: inline-block;
+  margin: 1em 0;
+  padding: 0.5em 1.5em;
+}
+//Esta clase utiliza el placeholder de button
+
+.button {
+  @extend %button;
+}
+
+.button-alert {
+  @extend %button;
+  background: red;
+  color: white;
+}
+
+.parrafo-chulo {
+  font-size: 14px;
+  font-weight: 600;
+  color: grey;
+}
+
+p {
+  @extend .parrafo-chulo;
+  text-align: center;
+}
+
+//CONDICIONALES
+//Con !default en las variables hacemos que se puedan sobreescribir.
+$dev: true !default;
+$dev: false;
+//Las condiciones se establecen asi
+@if $dev {
+  p {
+    color: yellow;
+  }
+} @else if $dev == undefined {
+  p {
+    color: purple;
+  }
+} @else {
+  p {
+    color: brown;
+  }
+}
+
+// Para comprobar mas de una condicion usamos and y para comprobar una u otra usamos
+// or
+
+$num: 1;
+
+@if $num > 5 and $num < 2 {
+  h1 {
+    color: blue;
+  }
+} @else if $num == 1 or $num ==4 {
+  h2 {
+    font-size: 3em;
+  }
+}
+
+// mixings
+.header {
+  @include button;
+  a {
+    text-decoration: none;
+  }
+}
+
+.footer {
+  @include footer(blue);
+}
+
+@include nav;
+
+@include buttons(red, blue, yellow);
+
+@include button-class(map-keys($button-colors) ...);
+
+//@content
+.menu {
+  @include menu {
+    display: flex;
+    margin-right: 5px;
+  }
+}
+
+//Responsive design, media queris en mixin
+
+section {
+  @include media-query(small) {
+    background: yellow;
+  }
+  @include media-query(medium) {
+    background: brown;
+  }
+  @include media-query(large) {
+    background: blue;
+  }
+  @include media-query(200px) {
+    background: white;
+  }
+}
+
+.padding-double {
+  font-size: double(1em);
+}
+
+.font {
+  font-size: pxToEm(20px);
+}
+
+footer {
+  background: img("image.jpg");
+}
+
+//quote y unquote
+$width: 1px;
+$style: solid;
+$colorin: red;
+.border {
+  border: unquote($width + " " + $style + " " + $colorin);
+  &::before {
+    content: quote($style);
+  }
+  height: str-index($style, "o");
+}
+
+//porcentaje
+body {
+  width: percentage(1);
+}
+
+//join()
+
+.h1 {
+  border: join($border1, $border2, comma);
+}
+
+.text {
+  text-shadow: long-shadow(100, white);
+  font-size: 3em;
+}
+
+section {
+  box-shadow: long-shadow(50, white);
+}

@@ -1,0 +1,73 @@
+//Funciones
+
+@function double($number) {
+  @if type-of($number) == number {
+    @return $number * 2;
+  }
+  @return null;
+}
+
+//Funcion para convertir pixeles en em
+@function pxToEm($px, $base: 16px) {
+  @if (type-of($px) == number and unit($px) == "px") and
+    ($base and type-of($base) == number and unit($base) == "px")
+  {
+    @return ($px / $base) * 1em;
+  }
+  @return null;
+}
+
+//Funcion para las rutas de las imágenes BUENÍSIMA
+@function img($img) {
+  @return url($path + $img);
+}
+
+//Funciones de strings
+// quote($string) -> añade comillas a la variable
+// unquote($string) -> le quita las comillas a la variable
+// str-length($string) -> nos devuelve el numero de caracteres de un string
+// str-index($string, $value) -> nos devulve el indice de un string segun el valor que le pasemos
+// to-upper-case($string) -> convierte un string en mayúsculas
+// to-lower-case($string) -> convierte un string en minúsculas
+
+//Funciones de numeros
+// percentage($number) -> nos devuelve el numero dado convertido a porcentaje
+// max($num1, $num2, $num3) -> nos devuelve el numero mas grande de los dados
+// min($num1, $num2, ..) -> nos devuelve el numero menos de los dados
+// floor(54.9) = 54 -> nos devuelve un numero redondeado hacia abajo
+// ceil(54.1)= 55 -> nos devuelve un numero redondeado hacia arriba
+// round(5.4) = 4 -< nos devuelve un numero redondeado hacia el mas cercano
+// random() -> nos devuelve un numero aleatorio entre el 0 y el 1 sin contar el 1
+// random(numero) nos devuelve un entero entre el 0 y el numero dado
+
+//FUNCIONES DE LISTAS Y MAPAS
+// nth($list, n) -> nos devuelve el elemento de la lista cuyo indice le pasamos
+// index($list, $value) -> nos devuelve el indice del valor que queramos, el valor no tiene que ser una variable
+// join(list1, list2, separador) -> nos devuelve una nueva lista uniendo las que queramos con un posible separador
+// los separadores pueden ser space | comma y son opcionales
+// append($list, $value, separador) nos sirve para añadir un elemento al final de una lista
+// map-get($map, $key) -> nos devuelve el valor del mapa segun el key que le demos
+// map-keys($map) -> nos devuelve una lista de keys de un mapa
+// map-values($map) -> nos devuelve una lista con todos los valores de un mapa
+// map-has-key($map, $key) -> nos devuelve un booleano que nos dice si un key esta en un mapa
+// map-merge($list1, $list2) -> fusiona dos mapas dados en uno solo.
+
+//FUNCIONES DE INTROSPECCION - Son funciones de auto-evaluacion
+// inspect($value) -> sirve para mostrar de forma semejante al console.log el valor que pasemos.
+// type-of($value) nos devuelve el tipo de dato que le pasemos
+// unit($value) -> nos devuelve la unidad del valor como string
+// unitless($value) -> devuelve un booleano; true si el valor no tiene unidad y false si la tiene
+// mixin-exists(nombre del mixin) -> sirve para preguntar si un mixin existe devolviendonos un booleano
+// function-exists(nombre de la funcion) -> lo mismo que con el mixin
+// variable-exist(nombre de la variable) -> lo mismo que con el mixin
+//global-variable-exists(nombre de la variable) -> lo mismo que con el mixin
+
+//EJERCICIO LONG SHADOWS
+
+@function long-shadow($n, $color) {
+  $shadow: unquote("1px 1px #{$color}");
+  @for $i from 2 through $n {
+    $shadow: append($shadow, #{$i * 1px $i * 1px $color}, comma);
+  }
+  @return $shadow;
+}

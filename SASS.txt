@@ -1,0 +1,22 @@
+Para poder trabajar con el prepocesador de sass o scss para los estilos.
+
+Una forma de hacerlo seria:
+1- instalar globalmente-> npm install -g node-sass
+2- En la carpeta donde tenemos el proyecto crear directorio scss y css.
+3- Dentro de scss creamos el archivo styles.scss
+4- En la consola ejecutamos-> node-sass --watch scss --output css
+5-Comienza la escucha de scss para pasarlo a css.
+
+Otra forma seria:
+
+1-En la carpeta del proyecto inicializar npm -> npm init
+2-Rellenar las preguntas que nos hacen o enter a todo.
+3-Crear directorios scss y css.
+4-Dentro del directorio scss creamos styles.scss
+5-En la carpeta del proyecto instalamos node-sass -> npm i node-sass
+6-En el packaje.json creado a partir del npm init tendremos que tener lo siguiente:
+	"scripts": {
+	  "test": "echo \"Error: no test specified\" && exit 1",
+	  "scss": "node-sass --watch scss -o css"
+		}
+7-Para empezar a escuchar los cambios de scss y pasarlos al css ejecutamos-> npm run scss

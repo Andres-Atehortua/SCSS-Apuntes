@@ -1,0 +1,47 @@
+// Iteraciones
+
+//Ciclo for
+//Ir desde el 1 hasta el 10
+// Para interpolar variables usamos  #{var}
+//Si queremos darle una unidad a un valor lo podemos multiplicar
+//por 1% 1em, 1px, etc...
+@for $i from 1 through 10 {
+  .column-#{$i *10} {
+    width: $i * 10%;
+  }
+}
+
+// Ciclo each sirve para recorrer listas(arrays) o mapas(objetos)
+//Esto de abajo es una lista, o array.
+$colors: red blue green;
+
+@each $color in $colors {
+  .button-#{$color} {
+    background: $color;
+  }
+}
+
+//Esto de abajo es un mapa
+$colors-order: (
+  primary: blue,
+  secondary: grey,
+  danger: red,
+);
+
+@each $key, $value in $colors-order {
+  .p-#{$key} {
+    color: $value;
+  }
+}
+//EJERCICIO ESPECIAL ARCOIRIS
+
+$rainbow: hsl(0, 100, 50);
+@for $i from 1 through 360 {
+  $rainbow: append($rainbow, hsl($i, 100, 50), comma);
+}
+
+body {
+  //Con to right, left, bottom, top manejamos la orientacion
+  background: linear-gradient(to right, $rainbow);
+  min-height: 100vh;
+}

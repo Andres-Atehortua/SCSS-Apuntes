@@ -1,0 +1,84 @@
+// Los mixins son bloques de codigo reutilizables que pueden contener selectores,
+// reglas de css, etc...
+
+@mixin button {
+  display: inline-block;
+  margin: 1em;
+}
+
+// Los mixins pueden recibir variables como parámetros, y pueden tener
+// valores por defecto
+@mixin footer($color: red) {
+  background: $color;
+}
+
+// Se pueden crear mixin con etiquetas para no tener que requerirlo dentro
+// de ninguna otra en la importacion
+
+@mixin nav {
+  ul {
+    display: flex;
+    li {
+      margin-right: 10px;
+    }
+  }
+}
+
+//mixin con una lista
+@mixin buttons($colors...) {
+  //@debug nos sirve para mostar en el terminal el valor de algo
+  @debug length($colors);
+  .button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: nth($colors, 1);
+    @if length($colors) >1 {
+      @for $i from 2 through length($colors) {
+        &.#{nth($colors, $i)} {
+          color: nth($colors, $i);
+        }
+      }
+    }
+  }
+}
+
+// mixin con un mapa
+
+@mixin button-class($colors...) {
+  .button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: map-get($button-colors, nth($colors, 1));
+    @if length($colors) >1 {
+      @for $i from 2 through length($colors) {
+        &-#{nth($colors, $i)} {
+          color: map-get($button-colors, nth($colors, $i));
+        }
+      }
+    }
+  }
+}
+
+//Directiva content
+@mixin menu {
+  color: red;
+  display: block;
+  .link {
+    @content;
+  }
+}
+
+//Responsive design, media queris en mixin
+@mixin media-query($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and(min-width: map-get($breakpoints, $breakpoint )) {
+      @content;
+    }
+  } @else if type-of($breakpoint) == number and unit($breakpoint) == "px" {
+    @media screen and (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}
